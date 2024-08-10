@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Todo App</h1>
+  <form id="todo-form" (submit)="addTodo()">
+    <input type="text" [(ngModel)]="item" name="item" id="todo-input" placeholder="Enter a new task" required />
+    <button type="submit">Add Task</button>
+  </form>
+
+  <div class="filters">
+    <button [ngClass]="filterBy=='all'?'filterButton':'button'" (click)="setFilter('all')">All</button>
+    <button [ngClass]="filterBy=='active'?'filterButton':'button'" (click)="setFilter('active')">Active</button>
+    <button [ngClass]="filterBy=='completed'?'filterButton':'button'" (click)="setFilter('completed')">Completed</button>    
+  </div>
+  <div>
+    <app-todo-item [filterBy]="filterBy" [todoList]="todoList" (deleteEmitter)="deleteTodo($event)"
+      (toggleEmitter)="toggleComplete($event)"></app-todo-item>
+  </div>
+</div>
